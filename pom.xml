@@ -8,16 +8,17 @@
 		<version>2.3.3.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>HRSystemRest</groupId>
-	<artifactId>HRSystemRest</artifactId>
+	<groupId>DockerAPI</groupId>
+	<artifactId>DockerAPI</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>HRSystemRest</name>
-	<description>Demo project for Spring Boot</description>
+	<name>DockerAPI</name>
+	<description>Demo project for Docker</description>
 
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
-
+	
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -49,6 +50,11 @@
 		</dependency>
 		
 		
+		
+		 
+
+
+
 	    
 		<!-- API dependency -->
 		<dependency>
@@ -57,16 +63,40 @@
 		  <version>SNAPSHOT</version>
 		  <systemPath>/Users/deepti/eclipse-workspace/HRSystemAPI/target/HRSystemAPI-0.0.1-SNAPSHOT.jar</systemPath>        
 		  <scope>system</scope>
-		</dependency>	
+		</dependency> 
+		<!-- API dependency -->	
 	</dependencies>
-
+	
 	<build>
 		<plugins>
-			<plugin>
+         	<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!-- To include jar files in system scope (API Jar) in the final jar -->	
+				<configuration>
+                  <includeSystemScope>true</includeSystemScope>
+                </configuration>
+                <!-- To include jar files in system scope in the final jar -->
+				
+					<executions>
+				<!-- Start:: To place generated jar file under docker folder, this execution was added.  -->
+			            <execution>
+			                <goals>
+			                    <goal>repackage</goal>
+			                </goals>
+			                <configuration>
+			                    <mainClass>com.HRSystem.rest.HrSystemRestApplication</mainClass>
+			                    <outputDirectory>${project.basedir}/docker</outputDirectory>
+			                </configuration>
+			            </execution>
+			      <!-- End :: To place generated jar file under docker folder, this execution was added.  -->
+		        </executions>
+			     
 			</plugin>
+			
 		</plugins>
 	</build>
+	
+	 
 
 </project>

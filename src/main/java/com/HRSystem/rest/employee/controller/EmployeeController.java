@@ -19,7 +19,7 @@ import com.api.employee.beans.Emp;
 import com.api.employee.service.EmpService;
 
 @RestController
-@RequestMapping("/HRSystemRest")
+@RequestMapping("/DockerAPI")
 public class EmployeeController {
 	
 @Autowired 
